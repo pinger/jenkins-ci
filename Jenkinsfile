@@ -21,12 +21,8 @@ pipeline {
         stage('Git Pull') {
             steps {
                ws("${repo_name}") {
-                    cleanWs()
-                   checkout scm: [
-                         $class: 'GitSCM',
-                        userRemoteConfigs: [[url: "${repo_url}" ]]
-                        branches: [[name: "${ref}"]]],
-                    poll: false
+                   cleanWs()
+                   checkout scm: [ $class: 'GitSCM', userRemoteConfigs: [[url: "${repo_url}" ]] branches: [[name: "${ref}"]]], poll: false
                 }
             }
         }
