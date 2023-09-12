@@ -22,7 +22,7 @@ pipeline {
             steps {
                ws("${repo_name}") {
                    cleanWs()
-                   checkout([$class: 'GitSCM',
+                   checkout scm: [$class: 'GitSCM',
                           branches: [[name: "${ref}"]],
                           doGenerateSubmoduleConfigurations: false,
                           extensions: [[$class: 'SubmoduleOption',
@@ -33,7 +33,7 @@ pipeline {
                                 trackingSubmodules: false]], 
                           submoduleCfg: [], 
                           userRemoteConfigs: [[url: "${repo_url}"]]],
-                        poll: false)
+                        poll: false
                 }
             }
         }
