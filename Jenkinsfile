@@ -22,7 +22,7 @@ pipeline {
             steps {
                ws("${repo_name}") {
                    cleanWs()
-                   checkout scm: [ $class: 'GitSCM', userRemoteConfigs: [[url: "${repo_url}" ]] branches: [[name: "${ref}"]]], poll: false
+                   checkout scmGit(branches: [[name: "${ref}"]], userRemoteConfigs: [[ url: "${repo_url}" ]]), poll: false
                 }
             }
         }
