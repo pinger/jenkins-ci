@@ -44,8 +44,11 @@ pipeline {
         }
         stage('Test') {
             steps {
-                //
-                echo env.ref
+                ws("${repo_name}") {
+                    sh """
+                        cat README.md
+                    """
+                }
             }
         }
         stage('Deploy') {
