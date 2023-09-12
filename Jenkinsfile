@@ -22,14 +22,17 @@ pipeline {
             steps {
                ws("${repo_name}") {
                    cleanWs()
-                   checkout scmGit(branches: [[name: "${ref}"]], userRemoteConfigs: [[ url: "${repo_url}" ]]), poll: false
+                   //checkout scmGit(branches: [[name: "${ref}"]], userRemoteConfigs: [[ url: "${repo_url}" ]]), poll: false
                 }
             }
         }
         stage('Build') {
             steps {
                 ws("${repo_name}") {
-                    cat README.md
+                    //cat README.md
+                    sh """
+                        pwd
+                    """
                 }
             }
         }
@@ -45,12 +48,12 @@ pipeline {
                 echo env.ref
             }
         }
-        post {
+    }
+    post {
         always {
             script{
                 cleanWs()
            }
        }
-    }
     }
 }
