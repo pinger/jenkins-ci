@@ -22,11 +22,13 @@ pipeline {
         stage('Test') {
             steps {
                 //
+                echo env.ref
             }
         }
         stage('Deploy') {
             steps {
                 //
+                echo env.ref
             }
         }
     }
