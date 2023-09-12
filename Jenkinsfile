@@ -22,9 +22,10 @@ pipeline {
             steps {
                ws("${repo_name}") {
                     cleanWs()
-                    git branch: "${ref}",
-                    url: "${repo_url}",
-                    changelog: false,
+                   checkout scm: [
+                         $class: 'GitSCM',
+                        userRemoteConfigs: [[url: "${repo_url}" ]]
+                        branches: [[name: "${ref}"]]],
                     poll: false
                 }
             }
@@ -48,5 +49,12 @@ pipeline {
                 echo env.ref
             }
         }
+        post {
+        always {
+            script{
+                cleanWs()
+           }
+       }
+    }
     }
 }
