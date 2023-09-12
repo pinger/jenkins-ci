@@ -13,6 +13,8 @@ pipeline {
         )
     }
     parameters {
+        string 'repo_name'
+        string 'repo_url'
         string defaultValue: "", description: "refs/heads/main", name: "ref"
     }
     stages {
