@@ -32,6 +32,7 @@ pipeline {
                     //cat README.md
                     sh """
                         pwd
+                        ls -lcha
                     """
                 }
             }
