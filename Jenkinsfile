@@ -6,9 +6,9 @@ pipeline {
                 [key: 'ref', value: '$.ref'],
                 [defaultValue: '', key: 'repo_name', regexpFilter: '', value: '$.repository.name'],
                 [defaultValue: '', key: 'repo_url', regexpFilter: '', value: '$.repository.clone_url'],
-                [defaultValue: '', key: 'sender_email', value: '$.sender.email'],
+                [defaultValue: '', key: 'sender_email', value: '$.pusher.email'],
      ],
-          causeString: 'Generic Cause',
+          causeString: "Changes made by ${sender_email}",
           token: 'hello',
         )
     }
@@ -16,6 +16,7 @@ pipeline {
         string 'repo_name'
         string 'repo_url'
         string defaultValue: "", description: "refs/heads/main", name: "ref"
+        string 'sender_email'
     }
     stages {
         stage('Git Pull') {
